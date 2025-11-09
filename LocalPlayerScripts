@@ -203,7 +203,7 @@ local Window = WindUI:CreateWindow({
 	Title = "Furry Hub",
 	Icon = "crown",
 	Author = "FertonFox",
-	Folder = "ToolScriptsHub",
+	Folder = "FurryHubScripts",
 	Size = UDim2.fromOffset(580, 460),
 	MinSize = Vector2.new(560, 350),
 	MaxSize = Vector2.new(850, 560),
@@ -237,7 +237,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-	Title = "V 2.5",
+	Title = "V 621.0",
 	Color = Color3.fromHex("#b66d00"),
 	Radius = 8,
 })
