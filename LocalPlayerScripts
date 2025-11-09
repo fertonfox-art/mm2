@@ -200,9 +200,9 @@ WindUI:AddTheme({
 })
 
 local Window = WindUI:CreateWindow({
-	Title = "Tool Scripts Hub",
+	Title = "Furry Hub",
 	Icon = "crown",
-	Author = "by Tool Scripts On Youtube",
+	Author = "FertonFox",
 	Folder = "ToolScriptsHub",
 	Size = UDim2.fromOffset(580, 460),
 	MinSize = Vector2.new(560, 350),
