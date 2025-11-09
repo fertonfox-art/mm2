@@ -1,7 +1,7 @@
 if game.PlaceId == 142823291 or game.GameId == 142823291 then
 	warn("Correct Game Loading...")
 else
-	game:GetService("Players").LocalPlayer:Kick("This script is designed to Run On MM2")
+	game:GetService("Players").LocalPlayer:Kick("This script is designed to Run On MM2 :3 please load it up")
 end
 
 local TpScript = "https://raw.githubusercontent.com/fertonfox-art/mm2/refs/heads/main/LocalPlayerScripts"
