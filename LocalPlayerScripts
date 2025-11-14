@@ -28,7 +28,10 @@ local bag_full = false
 local total_collected = 0
 local auto_farm_speed = 15
 local autofarm_enabled = false
-
+local TeleportService = game:GetService("TeleportService")
+local autoRejoinEnabled = false
+local rejoinInterval = 1800 -- 30 minutes
+local autoRejoinPlaceId = 142823291 -- MM2 place ID
 -- Chat function
 local TextChatService = cloneref(game:GetService("TextChatService"))
 local function chat(message)
@@ -47,6 +50,21 @@ task.spawn(function()
 		VirtualUser:ClickButton2(Vector2.new())
 		task.wait(60)
 	end
+end)
+
+-- Auto-Rejoin
+task.spawn(function()
+    while true do
+        task.wait(rejoinInterval)
+        if autoRejoinEnabled then
+            local success, err = pcall(function()
+                TeleportService:Teleport(autoRejoinPlaceId, Players.LocalPlayer)
+            end)
+            if not success then
+                warn("Auto Rejoin Failed: "..tostring(err))
+            end
+        end
+    end
 end)
 
 -- Functions
@@ -1137,6 +1155,44 @@ local Button = Tab:Button({
 })
 
 Tab:Divider()
+
+local Section = Window:Section({
+    Title = "Misc",
+    Icon = "settings",
+    Opened = false,
+})
+
+local Tab = Section:Tab({
+    Title = "Auto Rejoin",
+    Icon = "refresh",
+    Locked = false,
+})
+
+local Toggle = Tab:Toggle({
+    Title = "Enable Auto Rejoin",
+    Desc = "Automatically rejoins the server every 30 minutes.",
+    Icon = "refresh",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(state)
+        autoRejoinEnabled = state
+        if state then
+            WindUI:Notify({
+                Title = "Auto Rejoin Enabled",
+                Content = "You will rejoin every 30 minutes automatically.",
+                Duration = 3,
+                Icon = "check",
+            })
+        else
+            WindUI:Notify({
+                Title = "Auto Rejoin Disabled",
+                Content = "Auto Rejoin stopped.",
+                Duration = 3,
+                Icon = "x",
+            })
+        end
+    end,
+})
 
 local Button = Tab:Button({
 	Title = "Rejoin!",
