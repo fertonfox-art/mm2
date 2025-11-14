@@ -33,6 +33,16 @@ local autoRejoinEnabled = false
 local rejoinInterval = 1800 -- 30 minutes
 local autoRejoinPlaceId = 142823291 -- MM2 place ID
 
+local Configs = {
+    AutoRejoin = false
+}
+
+local function saveConfigs()
+    -- Placeholder for saving settings if you want persistence
+    print("Configs saved:", Configs)
+end
+
+
 -- Chat function
 local TextChatService = cloneref(game:GetService("TextChatService"))
 local function chat(message)
