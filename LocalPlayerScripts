@@ -502,15 +502,15 @@ local Toggle = Tab:Toggle({
     Default = false,
     Callback = function(state)
         autofarm_enabled = state
+        farming = state  -- also start farming immediately
         if state then
             WindUI:Notify({
                 Title = "Autofarm Enabled",
-                Content = "Autofarm will start on round begin.",
+                Content = "Autofarm will start immediately and on round begin.",
                 Duration = 3,
                 Icon = "check",
             })
         else
-            farming = false
             WindUI:Notify({
                 Title = "Autofarm Disabled",
                 Content = "Autofarm stopped.",
@@ -521,12 +521,13 @@ local Toggle = Tab:Toggle({
     end,
 })
 
--- tick it and call the callback immediately
+-- tick it and enable immediately
 task.spawn(function()
-    task.wait(0.1)  -- let UI initialize
-    Toggle:SetState(true)  -- visually tick
-    Toggle.Callback(true)  -- actually enable autofarm
+    task.wait(0.1)  -- allow UI to initialize
+    Toggle:SetState(true)       -- check the box visually
+    Toggle.Callback(true)       -- actually enable autofarm
 end)
+
 
 local Section = Window:Section({
 	Title = "Optimization",
