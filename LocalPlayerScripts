@@ -1168,6 +1168,44 @@ local Tab = Section:Tab({
     Locked = false,
 })
 
+local Section = Window:Section({
+    Title = "Misc",
+    Icon = "settings",
+    Opened = false,
+})
+
+local Tab = Section:Tab({
+    Title = "Auto Rejoin",
+    Icon = "refresh",
+    Locked = false,
+})
+
+local Toggle = Tab:Toggle({
+    Title = "Enable Auto Rejoin",
+    Desc = "Automatically rejoins the server every 30 minutes.",
+    Icon = "refresh",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(state)
+        autoRejoinEnabled = state
+        if state then
+            WindUI:Notify({
+                Title = "Auto Rejoin Enabled",
+                Content = "You will rejoin every 30 minutes automatically.",
+                Duration = 3,
+                Icon = "check",
+            })
+        else
+            WindUI:Notify({
+                Title = "Auto Rejoin Disabled",
+                Content = "Auto Rejoin stopped.",
+                Duration = 3,
+                Icon = "x",
+            })
+        end
+    end,
+})
+
 
 local Button = Tab:Button({
 	Title = "Rejoin!",
