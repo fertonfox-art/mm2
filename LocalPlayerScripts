@@ -495,35 +495,37 @@ local Tab = Section:Tab({
 })
 
 local Toggle = Tab:Toggle({
-	Title = "Enable Autofarm",
-	Desc = "Automatically farms the selected type.",
-	Icon = "check",
-	Type = "Checkbox",
-	Default = false,
-	Callback = function(state)
-		autofarm_enabled = state
-		if state then
-			WindUI:Notify({
-				Title = "Autofarm Enabled",
-				Content = "Autofarm will start on round begin.",
-				Duration = 3,
-				Icon = "check",
-			})
-		else
-			farming = false
-			WindUI:Notify({
-				Title = "Autofarm Disabled",
-				Content = "Autofarm stopped.",
-				Duration = 3,
-				Icon = "x",
-			})
-		end
-	end,
+    Title = "Enable Autofarm",
+    Desc = "Automatically farms the selected type.",
+    Icon = "check",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(state)
+        autofarm_enabled = state
+        if state then
+            WindUI:Notify({
+                Title = "Autofarm Enabled",
+                Content = "Autofarm will start on round begin.",
+                Duration = 3,
+                Icon = "check",
+            })
+        else
+            farming = false
+            WindUI:Notify({
+                Title = "Autofarm Disabled",
+                Content = "Autofarm stopped.",
+                Duration = 3,
+                Icon = "x",
+            })
+        end
+    end,
 })
 
+-- tick it and call the callback immediately
 task.spawn(function()
-    task.wait(0.1)  -- short delay to ensure toggle is initialized
-    Toggle:SetState(true)
+    task.wait(0.1)  -- let UI initialize
+    Toggle:SetState(true)  -- visually tick
+    Toggle.Callback(true)  -- actually enable autofarm
 end)
 
 local Section = Window:Section({
