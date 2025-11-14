@@ -27,7 +27,11 @@ local farming = false
 local bag_full = false
 local total_collected = 0
 local auto_farm_speed = 15
-local autofarm_enabled = false
+local autofarm_enabled = true
+
+if autofarm_enabled then
+    farming = true
+end
 
 -- Chat function
 local TextChatService = cloneref(game:GetService("TextChatService"))
