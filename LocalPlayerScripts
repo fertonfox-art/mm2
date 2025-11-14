@@ -521,7 +521,10 @@ local Toggle = Tab:Toggle({
 	end,
 })
 
-Toggle:SetState(true) -- ticks the checkbox
+task.spawn(function()
+    task.wait(0.1)  -- short delay to ensure toggle is initialized
+    Toggle:SetState(true)
+end)
 
 local Section = Window:Section({
 	Title = "Optimization",
