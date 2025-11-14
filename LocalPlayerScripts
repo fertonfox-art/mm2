@@ -27,7 +27,11 @@ local farming = false
 local bag_full = false
 local total_collected = 0
 local auto_farm_speed = 15
-local autofarm_enabled = true
+local autofarm_enabled = True
+
+if autofarm_enabled then
+    farming = true
+end
 
 -- Chat function
 local TextChatService = cloneref(game:GetService("TextChatService"))
@@ -237,7 +241,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-	Title = "V 6.2.1",
+	Title = "V 621.0",
 	Color = Color3.fromHex("#b66d00"),
 	Radius = 8,
 })
@@ -651,13 +655,6 @@ local Tab = Section:Tab({
 	Icon = "navigation",
 	Locked = false,
 })
-
-task.spawn(function()
-    while true do
-        task.wait(1800) -- every 30 minutes
-        Button.Callback()
-    end
-end)
 
 local Paragraph = Tab:Paragraph({
 	Title = "Caution!",
