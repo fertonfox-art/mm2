@@ -149,14 +149,14 @@ RoundStart.OnClientEvent:Connect(GetMap)
 
 WindUI:AddTheme({
     Name = "Christmas",
-    Accent = Color3.fromHex("#FF005D"),
+    Accent = Color3.fromHex("#b00241"),
     Dialog = Color3.fromHex("#39FF14"),
-    Outline = Color3.fromHex("#00F9FF"),
-    Text = Color3.fromHex("#FFFFFF"),
-    Placeholder = Color3.fromHex("#FFFB96"),
-    Background = Color3.fromHex("#0096FF"),
+    Outline = Color3.fromHex("#0013bf"),
+    Text = Color3.fromHex("#000000"),
+    Placeholder = Color3.fromHex("#D4AF37"),
+    Background = Color3.fromHex("#0011d1"),
     Button = Color3.fromHex("#FF1744"),
-    Icon = Color3.fromHex("#00FFA5"),
+    Icon = Color3.fromHex("#D4AF37"),
 })
 
 WindUI:AddTheme({
