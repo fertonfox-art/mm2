@@ -21,7 +21,7 @@ local CoinCollected = ReplicatedStorage.Remotes.Gameplay:WaitForChild("CoinColle
 local RoundStart = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Gameplay"):WaitForChild("RoundStart")
 local RoundEndFade = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Gameplay"):WaitForChild("RoundEndFade")
 
-local ToFarm = "Egg"
+local ToFarm = "Coin"
 local start_position = HumanoidRootPart.CFrame
 local farming = false
 local bag_full = false
@@ -148,17 +148,16 @@ end
 RoundStart.OnClientEvent:Connect(GetMap)
 
 WindUI:AddTheme({
-Name = "Christmas", -- theme name
-
--- Ultra bright, colourful, LED Christmas lights theme
-Accent = Color3.fromHex("#FF005D"), -- Neon candy red
-Dialog = Color3.fromHex("#39FF14"), -- NEON green (Christmas light green)
-Outline = Color3.fromHex("#00F9FF"), -- Neon cyan
-Text = Color3.fromHex("#FFFFFF"), -- Pure white text
-Placeholder = Color3.fromHex("#FFFB96"), -- Bright glowing yellow
-Background = Color3.fromHex("#0096FF"), -- Bright LED blue
-Button = Color3.fromHex("#FF1744"), -- Extremely vivid cherry red
-Icon = Color3.fromHex("#00FFA5"), -- Bright mint neon
+    Name = "Christmas",
+    Accent = Color3.fromHex("#FF005D"),
+    Dialog = Color3.fromHex("#39FF14"),
+    Outline = Color3.fromHex("#00F9FF"),
+    Text = Color3.fromHex("#FFFFFF"),
+    Placeholder = Color3.fromHex("#FFFB96"),
+    Background = Color3.fromHex("#0096FF"),
+    Button = Color3.fromHex("#FF1744"),
+    Icon = Color3.fromHex("#00FFA5"),
+})
 
 WindUI:AddTheme({
 	Name = "Crimson", -- theme name
@@ -467,7 +466,7 @@ Tab:Divider()
 
 local Dropdown = Tab:Dropdown({
 	Title = "Farm Type",
-	Values = { "Egg", "Coin", "Candy" },
+	Values = { "Coin", "Egg", "Candy" },
 	Value = "Coin",
 	Callback = function(option)
 		ToFarm = option
