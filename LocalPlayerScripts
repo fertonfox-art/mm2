@@ -263,133 +263,133 @@ local Tab = Section:Tab({
 })
 
 local Paragraph = Tab:Paragraph({
-	Title = "Player: " .. Players.LocalPlayer.Name,
-	Desc = "",
-	Color = "Orange",
-	Image = "",
-	ImageSize = 30,
-	Thumbnail = "",
-	ThumbnailSize = 80,
-	Locked = false,
-	Buttons = {},
+    Title = "Player: " .. Players.LocalPlayer.Name,
+    Desc = "",
+    Color = Color3.fromHex("#FF6F61"), -- Soft coral red
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {},
 })
 
 local Paragraph = Tab:Paragraph({
-	Title = "Player Display Name: " .. Players.LocalPlayer.DisplayName,
-	Desc = "",
-	Color = "Orange",
-	Image = "",
-	ImageSize = 30,
-	Thumbnail = "",
-	ThumbnailSize = 80,
-	Locked = false,
-	Buttons = {},
+    Title = "Player Display Name: " .. Players.LocalPlayer.DisplayName,
+    Desc = "",
+    Color = Color3.fromHex("#FFA500"), -- Bright orange
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {},
 })
 
 local Paragraph = Tab:Paragraph({
-	Title = "Account Age: " .. Players.LocalPlayer.AccountAge,
-	Desc = "",
-	Color = "Orange",
-	Image = "",
-	ImageSize = 30,
-	Thumbnail = "",
-	ThumbnailSize = 80,
-	Locked = false,
-	Buttons = {},
-})
-
-Tab:Divider()
-
-local Paragraph = Tab:Paragraph({
-	Title = "Player Level: " .. Players.LocalPlayer:GetAttribute("Level"),
-	Desc = "",
-	Color = "Orange",
-	Image = "",
-	ImageSize = 30,
-	Thumbnail = "",
-	ThumbnailSize = 80,
-	Locked = false,
-	Buttons = {},
-})
-
-local Paragraph = Tab:Paragraph({
-	Title = "Player Prestige: " .. Players.LocalPlayer:GetAttribute("Prestige"),
-	Desc = "",
-	Color = "Orange",
-	Image = "",
-	ImageSize = 30,
-	Thumbnail = "",
-	ThumbnailSize = 80,
-	Locked = false,
-	Buttons = {},
-})
-
-local Paragraph = Tab:Paragraph({
-	Title = "Player Total XP: " .. Players.LocalPlayer:GetAttribute("XP"),
-	Desc = "",
-	Color = "Orange",
-	Image = "",
-	ImageSize = 30,
-	Thumbnail = "",
-	ThumbnailSize = 80,
-	Locked = false,
-	Buttons = {},
+    Title = "Account Age: " .. Players.LocalPlayer.AccountAge,
+    Desc = "",
+    Color = Color3.fromHex("#32CD32"), -- Lime green
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {},
 })
 
 Tab:Divider()
 
 local Paragraph = Tab:Paragraph({
-	Title = "Equipped Gun: " .. Players.LocalPlayer:GetAttribute("EquippedGun"),
-	Desc = "",
-	Color = "Orange",
-	Image = "",
-	ImageSize = 30,
-	Thumbnail = "",
-	ThumbnailSize = 80,
-	Locked = false,
-	Buttons = {},
+    Title = "Player Level: " .. Players.LocalPlayer:GetAttribute("Level"),
+    Desc = "",
+    Color = Color3.fromHex("#1E90FF"), -- Dodger blue
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {},
 })
 
 local Paragraph = Tab:Paragraph({
-	Title = "Equipped Perk: " .. Players.LocalPlayer:GetAttribute("EquippedPerk"),
-	Desc = "",
-	Color = "Orange",
-	Image = "",
-	ImageSize = 30,
-	Thumbnail = "",
-	ThumbnailSize = 80,
-	Locked = false,
-	Buttons = {},
+    Title = "Player Prestige: " .. Players.LocalPlayer:GetAttribute("Prestige"),
+    Desc = "",
+    Color = Color3.fromHex("#9932CC"), -- Purple
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {},
 })
 
 local Paragraph = Tab:Paragraph({
-	Title = "Equipped Knife: " .. Players.LocalPlayer:GetAttribute("EquippedKnife"),
-	Desc = "",
-	Color = "Orange",
-	Image = "",
-	ImageSize = 30,
-	Thumbnail = "",
-	ThumbnailSize = 80,
-	Locked = false,
-	Buttons = {},
+    Title = "Player Total XP: " .. Players.LocalPlayer:GetAttribute("XP"),
+    Desc = "",
+    Color = Color3.fromHex("#FFD700"), -- Gold
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {},
+})
+
+Tab:Divider()
+
+local Paragraph = Tab:Paragraph({
+    Title = "Equipped Gun: " .. Players.LocalPlayer:GetAttribute("EquippedGun"),
+    Desc = "",
+    Color = Color3.fromHex("#FF4500"), -- Orange red
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {},
+})
+
+local Paragraph = Tab:Paragraph({
+    Title = "Equipped Perk: " .. Players.LocalPlayer:GetAttribute("EquippedPerk"),
+    Desc = "",
+    Color = Color3.fromHex("#00CED1"), -- Dark turquoise
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {},
+})
+
+local Paragraph = Tab:Paragraph({
+    Title = "Equipped Knife: " .. Players.LocalPlayer:GetAttribute("EquippedKnife"),
+    Desc = "",
+    Color = Color3.fromHex("#FF69B4"), -- Hot pink
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {},
 })
 
 local Tab = Section:Tab({
-	Title = "Player",
-	Icon = "gamepad-2",
-	Locked = false,
+    Title = "Player",
+    Icon = "gamepad-2",
+    Locked = false,
 })
 
 local Paragraph = Tab:Paragraph({
-	Title = "Thank You For Using My Script🐱",
-	Desc = "I'm A Solo Dev Just Trying To Make A Script That Is Trusted",
-	Color = "Orange",
-	Image = "",
-	ImageSize = 30,
-	Thumbnail = "",
-	ThumbnailSize = 80,
-	Locked = false,
-	Buttons = {},
+    Title = "Thank You For Using My Script🐱",
+    Desc = "I'm A Solo Dev Just Trying To Make A Script That Is Trusted",
+    Color = Color3.fromHex("#87CEEB"), -- Sky blue
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {},
 })
 
 Tab:Divider()
