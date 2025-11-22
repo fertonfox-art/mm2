@@ -55,7 +55,7 @@ local function get_nearest_coin()
 	for _, model in pairs(workspace:GetChildren()) do
 		if model:FindFirstChild("CoinContainer") then
 			for _, coin in pairs(model.CoinContainer:GetChildren()) do
-				if coin:GetAttribute("CoinID") == ToFarm and coin:FindFirstChild("TouchInterest") then
+				if coin:GetAttribute("CurrencyType") == ToFarm and coin:FindFirstChild("TouchInterest") then
 					local distance = (HumanoidRootPart.Position - coin.Position).Magnitude
 					if distance < min_distance then
 						closest_coin = coin
