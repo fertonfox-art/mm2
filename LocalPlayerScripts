@@ -246,8 +246,8 @@ WindUI:SetTheme("Christmas")
 Window:CreateTopbarButton("DarkMode", "moon", function()
 	WindUI:SetTheme("Dark")
 end, 990)
-Window:CreateTopbarButton("Event", "candy", function()
-	WindUI:SetTheme("Halloween")
+Window:CreateTopbarButton("Event", "gift", function()
+	WindUI:SetTheme("Christmas")
 end, 990)
 
 local Section = Window:Section({
