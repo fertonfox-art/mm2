@@ -551,12 +551,37 @@ local Tab = Section:Tab({
 	Locked = false,
 })
 
+local colors = {
+    Color3.fromRGB(255, 0, 0),     -- Red
+    Color3.fromRGB(255, 165, 0),   -- Orange
+    Color3.fromRGB(255, 255, 0),   -- Yellow
+    Color3.fromRGB(0, 255, 0),     -- Green
+    Color3.fromRGB(0, 0, 255),     -- Blue
+    Color3.fromRGB(75, 0, 130),    -- Indigo
+    Color3.fromRGB(238, 130, 238), -- Violet
+}
+
 local Paragraph = Tab:Paragraph({
-	Title = "Information!",
-	Desc = "This mode disable shadows and lows roblox graphics.",
-	Color = "Orange",
-	Locked = false,
+    Title = "Information!",
+    Desc = "This mode disables shadows and lowers Roblox graphics for smoother gameplay.",
+    Color = colors[1],
+    Locked = false,
 })
+
+-- Smooth color cycling
+task.spawn(function()
+    local i = 1
+    while true do
+        local nextColor = colors[i % #colors + 1]
+        game:GetService("TweenService"):Create(
+            Paragraph,
+            TweenInfo.new(1), -- 1 second per transition
+            {TextColor3 = nextColor}
+        ):Play()
+        i = i + 1
+        task.wait(1) -- wait for next tween
+    end
+end)
 
 Tab:Divider()
 
@@ -585,12 +610,35 @@ local Tab = Section:Tab({
 	Locked = false,
 })
 
+local TweenService = game:GetService("TweenService")
+
 local Paragraph = Tab:Paragraph({
-	Title = "Information!",
-	Desc = "This mode disable shadows, removes some textures and removes VFX.",
-	Color = "Orange",
-	Locked = false,
+    Title = "Information!",
+    Desc = "This mode disables shadows, removes some textures, and removes VFX.",
+    Color = Color3.fromRGB(0, 170, 255), -- initial techy blue
+    Locked = false,
 })
+
+-- Smooth color cycle between techy blue and neon purple
+local colors = {
+    Color3.fromRGB(0, 170, 255), -- neon blue
+    Color3.fromRGB(170, 0, 255), -- neon purple
+}
+
+task.spawn(function()
+    local i = 1
+    while true do
+        local nextColor = colors[i % #colors + 1]
+        local tween = TweenService:Create(
+            Paragraph,
+            TweenInfo.new(1), -- 1 second smooth transition
+            {TextColor3 = nextColor}
+        )
+        tween:Play()
+        i = i + 1
+        task.wait(1)
+    end
+end)
 
 Tab:Divider()
 
@@ -621,12 +669,37 @@ local Tab = Section:Tab({
 	Locked = false,
 })
 
+local TweenService = game:GetService("TweenService")
+
 local Paragraph = Tab:Paragraph({
-	Title = "Information!",
-	Desc = "This mode disable shadows and removes all textures and set graphic mode to 1.",
-	Color = "Orange",
-	Locked = false,
+    Title = "Information!",
+    Desc = "This mode disables shadows, removes all textures, and sets graphic mode to 1.",
+    Color = Color3.fromRGB(255, 50, 50), -- initial red
+    Locked = false,
 })
+
+-- Smooth color cycle between dark red and orange for a dramatic effect
+local colors = {
+    Color3.fromRGB(255, 50, 50),   -- bright red
+    Color3.fromRGB(200, 0, 0),     -- deep red
+    Color3.fromRGB(255, 120, 0),   -- orange-red
+}
+
+task.spawn(function()
+    local i = 1
+    while true do
+        local nextColor = colors[i % #colors + 1]
+        local tween = TweenService:Create(
+            Paragraph,
+            TweenInfo.new(1), -- 1 second smooth transition
+            {TextColor3 = nextColor}
+        )
+        tween:Play()
+        i = i + 1
+        task.wait(1)
+    end
+end)
+
 
 Tab:Divider()
 
@@ -670,18 +743,41 @@ local Tab = Section:Tab({
 	Locked = false,
 })
 
+local TweenService = game:GetService("TweenService")
+
 local Paragraph = Tab:Paragraph({
-	Title = "Caution!",
-	Desc = "When using teleport make sure not to change positions fast or you could get kicked!",
-	Color = "Orange",
-	Image = "",
-	ImageSize = 30,
-	Thumbnail = "",
-	ThumbnailSize = 80,
-	Locked = false,
-	Buttons = {},
+    Title = "Caution!",
+    Desc = "When using teleport make sure not to change positions fast or you could get kicked!",
+    Color = Color3.fromRGB(255, 200, 0), -- start with bright yellow
+    Locked = false,
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Buttons = {},
 })
 
+-- Smooth color cycle: yellow → orange → red
+local colors = {
+    Color3.fromRGB(255, 200, 0),  -- yellow
+    Color3.fromRGB(255, 140, 0),  -- orange
+    Color3.fromRGB(255, 50, 0),   -- red
+}
+
+task.spawn(function()
+    local i = 1
+    while true do
+        local nextColor = colors[i % #colors + 1]
+        local tween = TweenService:Create(
+            Paragraph,
+            TweenInfo.new(1), -- smooth 1-second transition
+            {TextColor3 = nextColor}
+        )
+        tween:Play()
+        i = i + 1
+        task.wait(1)
+    end
+end)
 local Dropdown = Tab:Dropdown({
 	Title = "Select Player",
 	Values = {},
@@ -999,12 +1095,39 @@ local Tab = Section:Tab({
 	Locked = false,
 })
 
+local TweenService = game:GetService("TweenService")
+
 local Paragraph = Tab:Paragraph({
-	Title = "Example Of Popular Items Correct Names!",
-	Desc = "XenoGun, XenoKnife, Gingerscope, Harvester, Icepiercer, SunsetKnife, SunsetGun...",
-	Color = "Orange",
-	Locked = false,
+    Title = "Example Of Popular Items Correct Names!",
+    Desc = "XenoGun, XenoKnife, Gingerscope, Harvester, Icepiercer, SunsetKnife, SunsetGun...",
+    Color = Color3.fromRGB(255, 140, 0), -- starting color (orange)
+    Locked = false,
 })
+
+-- Rainbow-ish neon gradient colors
+local colors = {
+    Color3.fromRGB(255, 140, 0),   -- orange
+    Color3.fromRGB(255, 50, 50),   -- red
+    Color3.fromRGB(255, 255, 0),   -- yellow
+    Color3.fromRGB(50, 205, 50),   -- lime green
+    Color3.fromRGB(50, 150, 255),  -- blue
+    Color3.fromRGB(200, 50, 255),  -- purple
+}
+
+task.spawn(function()
+    local i = 1
+    while true do
+        local nextColor = colors[i % #colors + 1]
+        local tween = TweenService:Create(
+            Paragraph,
+            TweenInfo.new(1), -- smooth 1-second transition
+            {TextColor3 = nextColor}
+        )
+        tween:Play()
+        i = i + 1
+        task.wait(1)
+    end
+end)
 
 Tab:Divider()
 
