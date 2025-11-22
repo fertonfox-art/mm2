@@ -156,7 +156,7 @@ WindUI:AddTheme({
     Placeholder = Color3.fromHex("#DCDCDC"),  -- Light grey for subtle hints
     Background = Color3.fromHex("#99ecff"),   -- Dark slate background, soft on eyes
     Button = Color3.fromHex("#FFFFFF"),       -- Muted red buttons
-    Icon = Color3.fromHex("#FFFFFF"),         -- Soft gold for icons
+    Icon = Color3.fromHex("#000000"),         -- Soft gold for icons
 })
 
 WindUI:AddTheme({
