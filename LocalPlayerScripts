@@ -223,13 +223,13 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:EditOpenButton({
-	Title = "Open Button",
+	Title = "Furry Hub",
 	Icon = "monitor",
 	CornerRadius = UDim.new(0, 16),
 	StrokeThickness = 2,
 	Color = ColorSequence.new( -- gradient
-		Color3.fromHex("#a75900"),
-		Color3.fromHex("#ffb52b")
+		Color3.fromHex("#319400"),
+		Color3.fromHex("#f70000")
 	),
 	OnlyMobile = false,
 	Enabled = true,
@@ -237,8 +237,8 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-	Title = "V 621.0",
-	Color = Color3.fromHex("#b66d00"),
+	Title = "V 6.2.1",
+	Color = Color3.fromHex("#02cce3"),
 	Radius = 8,
 })
 
