@@ -150,15 +150,15 @@ RoundStart.OnClientEvent:Connect(GetMap)
 WindUI:AddTheme({
 Name = "Christmas", -- theme name
 
-Accent = Color3.fromHex("#C21A1A"), -- Christmas red
-Dialog = Color3.fromHex("#0F2F1F"), -- Deep pine green
-Outline = Color3.fromHex("#A3D8FF"), -- Frost blue outline
-Text = Color3.fromHex("#FFFFFF"), -- Snow white
-Placeholder = Color3.fromHex("#FFDCA8"), -- Warm gold
-Background = Color3.fromHex("#14312F"), -- Forest green background
-Button = Color3.fromHex("#C21A1A"), -- Red buttons
-Icon = Color3.fromHex("#FFFFFF"), -- White icons
-})
+-- Ultra bright, colourful, LED Christmas lights theme
+Accent = Color3.fromHex("#FF005D"), -- Neon candy red
+Dialog = Color3.fromHex("#39FF14"), -- NEON green (Christmas light green)
+Outline = Color3.fromHex("#00F9FF"), -- Neon cyan
+Text = Color3.fromHex("#FFFFFF"), -- Pure white text
+Placeholder = Color3.fromHex("#FFFB96"), -- Bright glowing yellow
+Background = Color3.fromHex("#0096FF"), -- Bright LED blue
+Button = Color3.fromHex("#FF1744"), -- Extremely vivid cherry red
+Icon = Color3.fromHex("#00FFA5"), -- Bright mint neon
 
 WindUI:AddTheme({
 	Name = "Crimson", -- theme name
