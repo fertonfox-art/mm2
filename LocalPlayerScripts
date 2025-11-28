@@ -549,6 +549,7 @@ local Toggle = Tab:Toggle({
 	end,
 })
 
+-- UNBOXING SECTION
 local UnboxSection = Window:Section({
     Title = "Unboxing",
     Icon = "gift",
@@ -561,7 +562,6 @@ local UnboxTab = UnboxSection:Tab({
     Locked = false,
 })
 
--- All MM2 Box Names
 local BoxList = {
     "Mystery Box 1",
     "Knife Box 1",
@@ -578,8 +578,7 @@ local BoxList = {
 local SelectedBox = "Mystery Box 1"
 local AutoUnbox = false
 
--- Dropdown
-local Dropdown = UnboxTab:Dropdown({
+local UnboxDropdown = UnboxTab:Dropdown({
     Title = "Select Box",
     Desc = "Choose which box to auto-unbox",
     Values = BoxList,
@@ -589,8 +588,7 @@ local Dropdown = UnboxTab:Dropdown({
     end,
 })
 
--- Toggle
-local Toggle = UnboxTab:Toggle({
+local UnboxToggle = UnboxTab:Toggle({
     Title = "Enable Auto-Unbox",
     Desc = "Automatically opens selected box repeatedly.",
     Icon = "refresh-ccw",
@@ -608,15 +606,14 @@ local Toggle = UnboxTab:Toggle({
             })
 
             task.spawn(function()
-                local ShopRemotes = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Shop")
-                local UnboxRemote = ShopRemotes:WaitForChild("UnboxItem")
+                local Remotes = ReplicatedStorage.Remotes.Shop
+                local UnboxRemote = Remotes:WaitForChild("UnboxItem")
 
                 while AutoUnbox do
                     pcall(function()
                         UnboxRemote:InvokeServer(SelectedBox)
                     end)
-
-                    task.wait(1) -- anti-cheat friendly
+                    task.wait(1)
                 end
             end)
 
