@@ -154,7 +154,7 @@ WindUI:AddTheme({
     Outline = Color3.fromHex("#8B4513"),      -- Brownish/golden outline for warmth
     Text = Color3.fromHex("#ff00ee"),         -- White text for clarity
     Placeholder = Color3.fromHex("#DCDCDC"),  -- Light grey for subtle hints
-    Background = Color3.fromHex("#006379ff"),   -- Dark slate background, soft on eyes
+    Background = Color3.fromHex("#99ecff"),   -- Dark slate background, soft on eyes
     Button = Color3.fromHex("#FF0000"),       -- Muted red buttons
     Icon = Color3.fromHex("#D4AF37"),         -- Soft gold for icons
 })
