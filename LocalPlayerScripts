@@ -94,8 +94,7 @@ local function auto_unbox()
 				return
 			end
 
-			local result = ShopRemotes.BoxController:InvokeServer(SELECTED_BOX)
-
+			local result = ShopRemotes.BoxController:InvokeServer("KnifeBox1")
 
 			if result then
 				cases_opened += 1
@@ -637,38 +636,6 @@ local TestButton = Tab:Button({
 		save_webhook(WebhookInput.Value)
 		send_webhook("Webhook Test", "Your webhook works!", 65280)
 	end,
-})
-
-local ALL_BOXES = {
-    "MysteryBox1",
-    "MysteryBox2",
-    "KnifeBox1",
-    "KnifeBox2",
-    "KnifeBox3",
-    "KnifeBox4",
-    "KnifeBox5",
-    "RainbowBox",
-    "GunBox1",
-    "GunBox2",
-    "GunBox3",
-}
-
-local SELECTED_BOX = "KnifeBox1"
-
-local BoxDropdown = Tab:Dropdown({
-    Title = "Select Case to Auto Unbox",
-    Desc = "Choose a crate",
-    Values = ALL_BOXES,
-    Value = "KnifeBox1",
-    Callback = function(option)
-        SELECTED_BOX = option
-        WindUI:Notify({
-            Title = "Box Selected",
-            Content = "Auto-unbox will now open: " .. option,
-            Duration = 3,
-            Icon = "gift",
-        })
-    end,
 })
 
 
