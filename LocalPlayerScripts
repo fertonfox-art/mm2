@@ -701,7 +701,7 @@ local TestButton = Tab:Button({
                 "",
                 "✨ Your webhook is online and purring.",
                 "",
-                "📦 **FurryHub Version:** `v6.2.1`",
+                "📦 **Furry Hub Version:** `v6.2.1`",
                 "🛠️ **Status:** Running perfectly",
                 "",
                 "🧪 This was a test message — you're all set.",
