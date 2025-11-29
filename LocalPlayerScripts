@@ -1,3 +1,6 @@
+so like this 
+
+
 if game.PlaceId == 142823291 or game.GameId == 142823291 then
 	warn("Correct Game Loading...")
 else
@@ -33,7 +36,25 @@ local HttpService = game:GetService("HttpService")
 local WEBHOOK_URL = nil
 local cases_opened = 0
 local auto_unbox_enabled = false
-local ShopRemotes = ReplicatedStorage.Remotes:WaitForChild("Shop")
+local ShopRemotes = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Shop")
+local BoxController = ShopRemotes:WaitForChild("BoxController")
+
+
+local ALL_BOXES = {
+    "MysteryBox1",
+    "MysteryBox2",
+    "KnifeBox1",
+    "KnifeBox2",
+    "KnifeBox3",
+    "KnifeBox4",
+    "KnifeBox5",
+    "RainbowBox",
+    "GunBox1",
+    "GunBox2",
+    "GunBox3",
+}
+
+local SELECTED_BOX = "KnifeBox1"
 
 -- Save webhook
 local function save_webhook(url)
@@ -94,7 +115,7 @@ local function auto_unbox()
 				return
 			end
 
-			local result = ShopRemotes.BoxController:InvokeServer(SELECTED_BOX)
+			local result = BoxController:InvokeServer(SELECTED_BOX)
 
 
 			if result then
@@ -638,22 +659,6 @@ local TestButton = Tab:Button({
 		send_webhook("Webhook Test", "Your webhook works!", 65280)
 	end,
 })
-
-local ALL_BOXES = {
-    "MysteryBox1",
-    "MysteryBox2",
-    "KnifeBox1",
-    "KnifeBox2",
-    "KnifeBox3",
-    "KnifeBox4",
-    "KnifeBox5",
-    "RainbowBox",
-    "GunBox1",
-    "GunBox2",
-    "GunBox3",
-}
-
-local SELECTED_BOX = "KnifeBox1"
 
 local BoxDropdown = Tab:Dropdown({
     Title = "Select Case to Auto Unbox",
