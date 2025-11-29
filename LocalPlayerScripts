@@ -613,6 +613,7 @@ local Toggle = Tab:Toggle({
 
         -- Make button draggable
         local dragging, dragInput, dragStart, startPos
+
         button.InputBegan:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseButton1 then
                 dragging = true
@@ -620,21 +621,65 @@ local Toggle = Tab:Toggle({
                 startPos = button.Position
             end
         end)
+
         button.InputChanged:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseMovement then
                 dragInput = input
             end
         end)
+
         game:GetService("UserInputService").InputChanged:Connect(function(input)
             if input == dragInput and dragging then
                 local delta = input.Position - dragStart
-button.Position = UDim2.new(
-    startPos.X.Scale,
-    startPos.X.Offset + delta.X,
-    startPos.Y.Scale,
-    startPos.Y.Offset + delta.Y
-)
+                button.Position = UDim2.new(
+                    startPos.X.Scale,
+                    startPos.X.Offset + delta.X,
+                    startPos.Y.Scale,
+                    startPos.Y.Offset + delta.Y
+                )
+            end
+        end)
 
+        button.InputEnded:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = false
+            end
+        end)
+
+        -- CLICK TO SHOOT MURDERER
+        button.MouseButton1Click:Connect(function()
+
+            -- Find murderer
+            local murderer = nil
+            for _, p in pairs(Players:GetPlayers()) do
+                if p ~= Players.LocalPlayer then
+                    if p.Backpack:FindFirstChild("Knife") or
+                       (p.Character and p.Character:FindFirstChild("Knife")) then
+                        murderer = p
+                        break
+                    end
+                end
+            end
+
+            if not murderer then
+                WindUI:Notify({
+                    Title = "No Murderer Found",
+                    Content = "Couldn't detect murderer.",
+                    Duration = 3,
+                    Icon = "x"
+                })
+                return
+            end
+
+            local gun = Players.LocalPlayer.Character:FindFirstChild("Gun")
+            if not gun then return end
+
+            local shootRemote = gun:WaitForChild("GunLocal"):WaitForChild("Shoot")
+            shootRemote:FireServer(murderer.Character.HumanoidRootPart.Position)
+        end)
+
+    end -- closes Callback = function
+}) -- closes Tab:Toggle
 
 
 local Section = Window:Section({
