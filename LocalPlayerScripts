@@ -695,7 +695,7 @@ local TestButton = Tab:Button({
         local color = colors[math.random(1, #colors)]
 
         send_webhook(
-            "🦊 **FurryHub Webhook Test**",
+            "🦊 **Furry Hub Webhook Test**",
             table.concat({
                 "👋 Hello",
                 "",
