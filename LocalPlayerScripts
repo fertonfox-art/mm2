@@ -1,5 +1,3 @@
-so like this 
-
 if game.PlaceId == 142823291 or game.GameId == 142823291 then
 	warn("Correct Game Loading...")
 else
