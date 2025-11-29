@@ -584,67 +584,55 @@ local Toggle = Tab:Toggle({
     Default = false,
     Callback = function(state)
 
-        -- Remove UI if toggle off
-        if not state then
-            if shootButtonUI then
-                shootButtonUI:Destroy()
-                shootButtonUI = nil
-            end
-            return
+        -- Delete old UI
+        if shootButtonUI then
+            shootButtonUI:Destroy()
+            shootButtonUI = nil
         end
 
-        -- Create button UI
-        shootButtonUI = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+        if not state then return end
+
+        -- Create GUI in CoreGui (cannot be deleted by game)
+        shootButtonUI = Instance.new("ScreenGui")
         shootButtonUI.Name = "ShootMurdererUI"
+        shootButtonUI.IgnoreGuiInset = true
+        shootButtonUI.ResetOnSpawn = false
+        shootButtonUI.Parent = game:GetService("CoreGui")
 
-        local button = Instance.new("TextButton", shootButtonUI)
-        button.Size = UDim2.new(0, 200, 0, 60)
-        button.Position = UDim2.new(0.5, -100, 0.8, 0)
-        button.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
+        -- Create button
+        local button = Instance.new("TextButton")
+        button.Parent = shootButtonUI
+        button.Size = UDim2.new(0, 250, 0, 70)
+        button.Position = UDim2.new(0.5, -125, 0.75, 0)
+        button.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
         button.TextColor3 = Color3.new(1, 1, 1)
+        button.BorderSizePixel = 4
         button.TextScaled = true
-        button.Text = "Shoot Murderer"
-        button.BorderSizePixel = 3
+        button.Font = Enum.Font.GothamBold
+        button.Text = "🔥 SHOOT MURDERER 🔥"
 
-        button.MouseButton1Click:Connect(function()
-
-            -- Find murderer
-            local murderer = nil
-            for _, p in pairs(Players:GetPlayers()) do
-                if p ~= Players.LocalPlayer then
-                    if p.Backpack:FindFirstChild("Knife") or (p.Character and p.Character:FindFirstChild("Knife")) then
-                        murderer = p
-                        break
-                    end
-                end
+        -- Make button draggable
+        local dragging, dragInput, dragStart, startPos
+        button.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = true
+                dragStart = input.Position
+                startPos = button.Position
             end
-
-            if not murderer then
-                WindUI:Notify({
-                    Title = "Error",
-                    Content = "Couldn't find murderer.",
-                    Duration = 2,
-                    Icon = "x",
-                })
-                return
-            end
-
-            -- Shoot using new MM2 remote
-            local gun = Players.LocalPlayer.Character:FindFirstChild("Gun")
-            if not gun then return end
-
-            local shootRemote = gun:WaitForChild("GunLocal"):WaitForChild("Shoot")
-            shootRemote:FireServer(murderer.Character.HumanoidRootPart.Position)
-
-            WindUI:Notify({
-                Title = "Bang!",
-                Content = "Shot at " .. murderer.Name,
-                Duration = 3,
-                Icon = "crosshair",
-            })
         end)
-    end
-})
+        button.InputChanged:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseMovement then
+                dragInput = input
+            end
+        end)
+        game:GetService("UserInputService").InputChanged:Connect(function(input)
+            if input == dragInput and dragging then
+                local delta = input.Position - dragStart
+                button.Position = UDim2.new(
+                    startPos.X.Scale,
+                    startPos.X.Offset + delta.X,
+                    startPos.Y.Scale,
+                    startPos.Y.Offset +
 
 
 local Section = Window:Section({
