@@ -94,7 +94,9 @@ local function auto_unbox()
 				return
 			end
 
-			local result = ShopRemotes.BoxController:InvokeServer("KnifeBox1")
+			-- NEW WORKING REMOTE
+            local Unbox = ReplicatedStorage.Remotes.Shop:WaitForChild("UnboxItem")
+			local result = Unbox:InvokeServer("KnifeBox1")
 
 			if result then
 				cases_opened += 1
