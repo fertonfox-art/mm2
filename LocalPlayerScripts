@@ -575,24 +575,77 @@ local Slider = Tab:Slider({
 	end,
 })
 
+local shootButtonUI = nil
 
 local Toggle = Tab:Toggle({
-	Title = "Enable Shot Murderer Button",
-	Desc = "Spawns a button to shot murderer.",
-	Icon = "check",
-	Type = "Checkbox",
-	Default = false,
-	Callback = function(state)
-		button = state
-		local TargetPos = Players.BuilderGirls00.Character:FindFirstChild("HumanoidRootPart").position
-		local RemoteFunction = Players.LocalPlayer.Character.Gun.KnifeLocal.CreateBeam.RemoteFunction
-		if state then
-			RemoteFunction:InvokeServer(1, TargetPos, "AH2")
-		else
-			button = false
-		end
-	end,
+    Title = "Enable Shoot Murderer Button",
+    Desc = "Shows a button that auto-shoots the murderer.",
+    Icon = "crosshair",
+    Default = false,
+    Callback = function(state)
+
+        -- Remove UI if toggle off
+        if not state then
+            if shootButtonUI then
+                shootButtonUI:Destroy()
+                shootButtonUI = nil
+            end
+            return
+        end
+
+        -- Create button UI
+        shootButtonUI = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+        shootButtonUI.Name = "ShootMurdererUI"
+
+        local button = Instance.new("TextButton", shootButtonUI)
+        button.Size = UDim2.new(0, 200, 0, 60)
+        button.Position = UDim2.new(0.5, -100, 0.8, 0)
+        button.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
+        button.TextColor3 = Color3.new(1, 1, 1)
+        button.TextScaled = true
+        button.Text = "Shoot Murderer"
+        button.BorderSizePixel = 3
+
+        button.MouseButton1Click:Connect(function()
+
+            -- Find murderer
+            local murderer = nil
+            for _, p in pairs(Players:GetPlayers()) do
+                if p ~= Players.LocalPlayer then
+                    if p.Backpack:FindFirstChild("Knife") or (p.Character and p.Character:FindFirstChild("Knife")) then
+                        murderer = p
+                        break
+                    end
+                end
+            end
+
+            if not murderer then
+                WindUI:Notify({
+                    Title = "Error",
+                    Content = "Couldn't find murderer.",
+                    Duration = 2,
+                    Icon = "x",
+                })
+                return
+            end
+
+            -- Shoot using new MM2 remote
+            local gun = Players.LocalPlayer.Character:FindFirstChild("Gun")
+            if not gun then return end
+
+            local shootRemote = gun:WaitForChild("GunLocal"):WaitForChild("Shoot")
+            shootRemote:FireServer(murderer.Character.HumanoidRootPart.Position)
+
+            WindUI:Notify({
+                Title = "Bang!",
+                Content = "Shot at " .. murderer.Name,
+                Duration = 3,
+                Icon = "crosshair",
+            })
+        end)
+    end
 })
+
 
 local Section = Window:Section({
 	Title = "Farms",
