@@ -191,23 +191,36 @@ end)
 
 -- Functions
 local function get_nearest_coin()
-
 	local closest_coin, min_distance = nil, math.huge
-	for _, model in pairs(workspace:GetChildren()) do
-		if model:FindFirstChild("CoinContainer") then
-			for _, coin in pairs(model.CoinContainer:GetChildren()) do
-				if coin:GetAttribute("CoinID") == ToFarm and coin:FindFirstChild("TouchInterest") then
-					local distance = (HumanoidRootPart.Position - coin.Position).Magnitude
-					if distance < min_distance then
-						closest_coin = coin
-						min_distance = distance
+
+	for _, model in ipairs(workspace:GetChildren()) do
+		local cc = model:FindFirstChild("CoinContainer")
+		if cc then
+			for _, coin in ipairs(cc:GetDescendants()) do
+				-- only actual coin parts, not the TouchTransmitter itself
+				if coin:IsA("BasePart") then
+					local coinId = coin:GetAttribute("CoinID")
+
+					-- Support both types of "touch" detection
+					local hasTouch =
+						coin:FindFirstChildWhichIsA("TouchTransmitter", true)
+						or coin:FindFirstChild("TouchInterest")
+
+					if coinId == ToFarm and hasTouch then
+						local distance = (HumanoidRootPart.Position - coin.Position).Magnitude
+						if distance < min_distance then
+							closest_coin = coin
+							min_distance = distance
+						end
 					end
 				end
 			end
 		end
 	end
+
 	return closest_coin, min_distance
 end
+
 
 local function tween_to(position, duration)
 	local tween =
@@ -219,7 +232,10 @@ end
 local function start_farming_loop()
 	spawn(function()
 		while true do
-			if farming and not bag_full and Character and HumanoidRootPart then
+		if farming and not bag_full and Character and HumanoidRootPart then
+	if ToFarm == "SnowToken" and snow_bag_full() then
+		bag_full = true
+	end
 				local coin, distance = get_nearest_coin()
 				if coin then
 					if distance > 150 then
@@ -737,14 +753,22 @@ end)
 
 Tab:Divider()
 
+local FARM_TYPES = {
+	["Coin"] = "Coin",
+	["Egg"] = "Egg",
+	["Candy"] = "Candy",
+	["Snow Tokens"] = "SnowToken", -- IMPORTANT: internal ID (no space)
+}
+
 local Dropdown = Tab:Dropdown({
 	Title = "Farm Type",
 	Values = { "Coin", "Egg", "Candy", "Snow Tokens" },
-	Value = "SnowToken",
+	Value = "Snow Tokens",
 	Callback = function(option)
-		ToFarm = option
+		ToFarm = FARM_TYPES[option] or option
 	end,
 })
+
 
 local Slider = Tab:Slider({
 	Title = "Auto Farm Speed",
